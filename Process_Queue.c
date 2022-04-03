@@ -38,7 +38,7 @@ PcbPtr enqueuePcb(PcbPtr head, PcbPtr process) // returns new head
         temp = temp->next;
     }
     temp->next = process;
-    temp = NULL;
+    process->next = NULL;
     return head;
 }
 
