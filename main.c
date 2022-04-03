@@ -2,7 +2,7 @@
 #include<Process_control_block.h>
 #include<signal.h>
 
-int main(int argc, char const *argv[])
+int main(int argc, const char *argv[])
 {
     PcbPtr process_queue_head=NULL,current_process=NULL;
     int currently_running_any_process = 0; 
