@@ -3,11 +3,14 @@
 #include <signal.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
+
 // function to start a process
 void start_pcb(PcbPtr process)
 {
     int child = fork();
     process->pid = child;
+    process->status=RUNNING;
     if (child == 0)
     {
         execv(process->args[0], process->args);
@@ -15,16 +18,33 @@ void start_pcb(PcbPtr process)
     }
 }
 
+PcbPtr Stop_Pcb(PcbPtr process)
+{
+    if(kill(process->pid,SIGSTOP))return NULL;
+    process->status=SUSPENDED;
+    return process;
+}
+
+PcbPtr Resume_Pcb(PcbPtr process)
+{
+    
+    if(kill(process->pid,SIGCONT))return NULL;
+    process->status=RUNNING;
+    return process;
+}
+
 PcbPtr Terminate_Pcb(PcbPtr process)
 {
     if (kill(process->pid, SIGINT))
         return NULL;
+    process->status=TERMINATED;
     return process;
 }
 
 PcbPtr Create_Pcb()
 {
     PcbPtr temp = (PcbPtr)malloc(sizeof(PCB));
+    temp->status=CREATED;
     return temp;
 }
 
@@ -57,6 +77,22 @@ PcbPtr dequeuePcb(PcbPtr *head) // returns process dequeued
     *head = (*head)->next;
     temp->next = NULL;
     return temp;
+}
+void fill_dispatcher_list(PcbPtr *head)
+{
+    FILE *fp = fopen("process_list.txt", "r");
+    int arrtime, cputime;
+    char name[100];
+    PcbPtr proc;
+    while (fscanf(fp, "%d %d %s", &arrtime, &cputime, name) != EOF)
+    {
+        proc = Create_Pcb();
+        proc->arrival_time = arrtime;
+        proc->remaining_time = cputime;
+        proc->args[0] = (char *)malloc(100 * sizeof(char));
+        strcpy(proc->args[0], name);
+        *head = enqueuePcb(*head, proc);
+    }
 }
 
 int queue_size(PcbPtr head)

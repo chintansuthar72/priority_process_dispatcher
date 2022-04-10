@@ -1,24 +1,8 @@
 #include <stdio.h>
 #include "Process_control_block.h"
 #include <signal.h>
-#include <string.h>
 #include <stdlib.h>
-void fill_dispatcher_list(PcbPtr *head)
-{
-    FILE *fp = fopen("process_list.txt", "r");
-    int arrtime, cputime;
-    char name[100];
-    PcbPtr proc;
-    while (fscanf(fp, "%d %d %s", &arrtime, &cputime, name) != EOF)
-    {
-        proc = Create_Pcb();
-        proc->arrival_time = arrtime;
-        proc->remaining_time = cputime;
-        proc->args[0] = (char *)malloc(100 * sizeof(char));
-        strcpy(proc->args[0], name);
-        *head = enqueuePcb(*head, proc);
-    }
-}
+
 int main(int argc, char const *argv[])
 {
     PcbPtr process_queue_head = NULL, current_process = NULL;
