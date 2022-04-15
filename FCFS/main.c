@@ -26,13 +26,11 @@ int main(int argc, char const *argv[])
                     printf("Process %s finished executing\n", current_process->args[0]);
                 }
                 currently_running_any_process = 0;
-                // Free up memory
             }
             else
-            { // Process is still running
+            {   // Process is still running
                 //     printf("Currently running process : %s\n", current_process->args[0]);
-                current_process->remaining_time--;
-                // decrease remainingcputime
+                current_process->remaining_time--; // decrease remainingcputime
             }
         }
         else
