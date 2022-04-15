@@ -9,12 +9,13 @@
 void start_pcb(PcbPtr process)
 {
     int child = fork();
-    process->pid = child;
-    process->status=RUNNING;
     if (child == 0)
     {
+        process->status=RUNNING;
         execv(process->args[0], process->args);
         printf("Cannot start process : %s\n", process->args[0]);
+    } else {
+        process->pid = child;
     }
 }
 
