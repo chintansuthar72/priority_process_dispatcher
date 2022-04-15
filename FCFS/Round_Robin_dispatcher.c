@@ -15,12 +15,13 @@ int main()
     {
         while (dispathcer_queue && dispathcer_queue->arrival_time <= dispathcer_time)
         {
+            // Remove from dispatcher queue and push into round robin queue
             PcbPtr temp = dequeuePcb(&dispathcer_queue);
             Round_robin_queue = enqueuePcb(Round_robin_queue, temp);
         }
-         if (currently_running)
+        if (currently_running)
         {
-            current_process->remaining_time--;
+            current_process->remaining_time--; // decrease running time
             if (current_process->remaining_time == 0)
             {
                 Terminate_Pcb(current_process);
@@ -29,7 +30,7 @@ int main()
             }
             else if (Round_robin_queue)
             {
-                Stop_Pcb(current_process);
+                Stop_Pcb(current_process); // Pause process and push in queue
                 printf("process : %s was paused\n", current_process->args[0]);
                 Round_robin_queue = enqueuePcb(Round_robin_queue, current_process);
                 current_process = NULL;
@@ -41,12 +42,12 @@ int main()
              current_process = dequeuePcb(&Round_robin_queue);
             if (current_process->status == SUSPENDED)
             {
-                Resume_Pcb(current_process);
+                Resume_Pcb(current_process); // Resume suspended process
                 currently_running=1;
             }
             else if (current_process->status == CREATED)
             {
-                start_pcb(current_process);
+                start_pcb(current_process); // if process is new, start process
                 currently_running = 1;
             }
         }
