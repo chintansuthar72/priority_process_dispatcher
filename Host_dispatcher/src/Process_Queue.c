@@ -18,15 +18,15 @@ void start_pcb(PcbPtr process)
     process->pid = fork();
     if (process->pid == 0)
     {
-        close(process->File_descriptors[READ]);
-        dup2(process->File_descriptors[WRITE],1);
+        close(process->File_descriptors[READ]); // Close read end at child
+        dup2(process->File_descriptors[WRITE],1); // Direct output at stdout
         execv(process->args[0], process->args);
         printf("Cannot start process : %s\n", process->args[0]);
         exit(-1);
     }
     else
     {
-        close(process->File_descriptors[WRITE]);
+        close(process->File_descriptors[WRITE]); // Close write end at parent
     }
 }
 
@@ -39,7 +39,7 @@ PcbPtr Stop_Pcb(PcbPtr process)
 }
 int is_running(PcbPtr process)
 {
-    kill(process->pid, 0);
+    kill(process->pid, 0); // Check process is running or not
     if (errno == ESRCH || errno==EPERM)
     {
         return 0;
