@@ -19,7 +19,7 @@ void start_pcb(PcbPtr process)
     if (process->pid == 0)
     {
         close(process->File_descriptors[READ]);
-        // dup2(process->File_descriptors[WRITE],1);
+        dup2(process->File_descriptors[WRITE],1);
         execv(process->args[0], process->args);
         printf("Cannot start process : %s\n", process->args[0]);
         exit(-1);
