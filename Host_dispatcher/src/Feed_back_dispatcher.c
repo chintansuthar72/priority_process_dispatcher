@@ -80,7 +80,9 @@ int main()
                 *fd = current_process;
                 pthread_create(&threads[thread_index++], NULL, print_output, (void *)fd);
                 // printf("hi\n");
-                // printf("process : %s finished executing\n", current_process->args[0]);
+                // sem_wait(&thread_sem);
+                printf("\n--------process : %s finished executing at t= %f--------\n", current_process->args[0],dispathcer_time);
+                // sem_wait(&thread_sem);
                 currently_running = 0;
             }
             else if (Feedback_queues[0] || Feedback_queues[1] || Feedback_queues[2])
@@ -133,7 +135,7 @@ int main()
             nanosleep(&ts,&ts);
             // printf("hi\n");
     }
-    printf("reached end\n");
+    // printf("reached end\n");
     for (int i = 0; i < num_processes; i++)
         pthread_join(threads[i], NULL);
     sem_destroy(&thread_sem);
