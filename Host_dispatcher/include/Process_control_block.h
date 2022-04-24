@@ -5,7 +5,7 @@
 #define RUNNING 1
 #define SUSPENDED 2
 #define TERMINATED 3
-#define Time_Interval 0.001
+#define Time_Interval 0.001  // 1ms time interval
 // typedef to use short names
 typedef struct Process_control_block PCB;
 typedef PCB *PcbPtr;
@@ -13,11 +13,11 @@ typedef PCB *PcbPtr;
 struct Process_control_block // structure definition for a process
 {
     pid_t pid;           // process id
-    int priority;
+    int priority;       // Priority of process (Queue priority) - e.g 0,1,2
     char *args[MAXARGS]; // list of arguments
     float arrival_time;
-    int status;
-    int File_descriptors[2];
+    int status;         // CREATED, RUNNING, SUSPENDED, TERMINATED
+    int File_descriptors[2];        // For pipe use
     struct Process_control_block *next; // link to next process
 };
 
@@ -31,3 +31,4 @@ int is_running(PcbPtr process);
 void fill_dispatcher_list(PcbPtr *head);
 PcbPtr Stop_Pcb(PcbPtr process);
 PcbPtr Resume_Pcb(PcbPtr process);
+
