@@ -40,7 +40,7 @@ PcbPtr Stop_Pcb(PcbPtr process)
 int is_running(PcbPtr process)
 {
     kill(process->pid, 0);
-    if (errno == ESRCH)
+    if (errno == ESRCH || errno==EPERM)
     {
         return 0;
     }

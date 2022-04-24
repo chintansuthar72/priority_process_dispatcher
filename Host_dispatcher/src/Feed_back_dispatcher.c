@@ -2,6 +2,7 @@
 #include "../include/Process_control_block.h"
 #include <signal.h>
 #include <string.h>
+#include<sys/types.h>
 #include <sys/wait.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -37,7 +38,12 @@ void *print_output(void *args)
 }
 void wait_handler()
 {
-    wait(NULL);
+    pid_t pid;
+    int status;
+    while((pid==waitpid(-1,&status,WNOHANG))!=0)
+    {
+        if(pid==0) break;
+    }
 }
 int main()
 {
@@ -57,6 +63,7 @@ int main()
     PcbPtr current_process = NULL;
     while (dispatcher_queue || Feedback_queues[0] || Feedback_queues[1] || Feedback_queues[2] || currently_running)
     {
+        // printf("iter \n");
         while (dispatcher_queue && dispatcher_queue->arrival_time <= dispathcer_time)
         {
             PcbPtr temp = dequeuePcb(&dispatcher_queue);
@@ -65,6 +72,7 @@ int main()
         }
         if (currently_running)
         {
+            // printf("hey\n");
             if (is_running(current_process) == 0)
             {
                 currently_running = 0;
@@ -72,13 +80,14 @@ int main()
                 *fd = current_process;
                 pthread_create(&threads[thread_index++], NULL, print_output, (void *)fd);
                 // printf("hi\n");
-                printf("process : %s finished executing\n", current_process->args[0]);
+                // printf("process : %s finished executing\n", current_process->args[0]);
                 currently_running = 0;
             }
             else if (Feedback_queues[0] || Feedback_queues[1] || Feedback_queues[2])
             {
                 Stop_Pcb(current_process);
-                printf("process : %s was paused\n", current_process->args[0]);
+                // printf("pausing done\n");
+                // printf("process : %s was paused\n", current_process->args[0]);
                 current_process->priority--;
                 int queue_pos = current_process->priority;
                 if (queue_pos < 0)
@@ -116,12 +125,13 @@ int main()
                 currently_running = 1;
             }
         }
-        if (currently_running)
-        {
-            printf("interval %f , running : %s\n", dispathcer_time , current_process->args[0]);
-        }
+        // if (currently_running)
+        // {
+        //     printf("interval %f , running : %s\n", dispathcer_time , current_process->args[0]);
+        // }
             dispathcer_time += Time_Interval;
             nanosleep(&ts,&ts);
+            // printf("hi\n");
     }
     printf("reached end\n");
     for (int i = 0; i < num_processes; i++)

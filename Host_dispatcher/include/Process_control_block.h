@@ -5,7 +5,7 @@
 #define RUNNING 1
 #define SUSPENDED 2
 #define TERMINATED 3
-#define Time_Interval 0.1
+#define Time_Interval 1
 // typedef to use short names
 typedef struct Process_control_block PCB;
 typedef PCB *PcbPtr;

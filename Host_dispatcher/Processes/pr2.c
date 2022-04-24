@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>       // for clock_t, clock(), CLOCKS_PER_SEC
 #include <stdlib.h>  
- 
+#include<unistd.h> 
 int main ()
 {
     // open the file
@@ -14,7 +14,7 @@ int main ()
     // Return if could not open file
     if (fp == NULL)
       return 0;
- 
+    for(int i=0;i<100000000;i++);
  	printf("Testing Process 2\n") ;
     do
     {
