@@ -10,13 +10,17 @@
 #include <semaphore.h>
 #define READ 0
 #define WRITE 1
+
+// Semaphor
 sem_t thread_sem;
+
+// PRINT OUTPUT FOR EACH PROCESS
 void *print_output(void *args)
 {
     PcbPtr *ptr = args;
-    PcbPtr curr = *ptr;
-    int fd = curr->File_descriptors[READ];
-    sem_wait(&thread_sem);
+    PcbPtr curr = *ptr; // Current Process
+    int fd = curr->File_descriptors[READ]; // File descriptor for reading output
+    sem_wait(&thread_sem); // Lock semaphor
     int bytes_read, buffer_size = 10;
     char buff[buffer_size + 1];
     bytes_read = read(fd, buff, buffer_size);
@@ -33,8 +37,8 @@ void *print_output(void *args)
         buff[bytes_read] = '\0';
         printf("%s", buff);
     }
-    sem_post(&thread_sem);
-    close(curr->File_descriptors[READ]);
+    sem_post(&thread_sem); // Unlock semaphor
+    close(curr->File_descriptors[READ]); // Close file
 }
 void wait_handler()
 {
