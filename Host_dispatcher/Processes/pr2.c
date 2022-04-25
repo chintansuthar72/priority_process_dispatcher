@@ -6,16 +6,14 @@ int main ()
 {
     // open the file
 	double time_spent = 0.0;
- 
     clock_t begin = clock();
-
+    printf("Testing Process 2\n") ;
     FILE *fp = fopen("../Processes/pr1.c","r");
  
     // Return if could not open file
     if (fp == NULL)
       return 0;
-    for(int i=0;i<100000000;i++);
- 	printf("Testing Process 2\n") ;
+    for(int i=0;i<100000000;i++); // Just for consuming time
     do
     {
         // Taking input single character at a time
@@ -28,7 +26,7 @@ int main ()
         printf("%c", c);
     }  while(1);
 
- 	fclose(fp);
+ 	fclose(fp); // Close file
 
  	clock_t end = clock();
  

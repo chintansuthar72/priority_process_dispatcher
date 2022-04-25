@@ -7,7 +7,6 @@ int main()
 	printf("Testing Process 7\n") ;
 	for(int i=0;i<=n;i++)
 	{
-		// printf("%d ",i) ;
         sum += i;
 	}
     printf("Sum from 0 to %lld calculated\n",n);

@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-
+// Factorial count function
 int factorial(int n) {
     if( n == 1 || n == 2) {
         return n;
