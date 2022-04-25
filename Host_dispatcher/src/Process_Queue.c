@@ -15,12 +15,16 @@ void start_pcb(PcbPtr process)
 {
     pipe(process->File_descriptors);
     process->status = RUNNING;
+
+    // Create child process to run process from process queue
     process->pid = fork();
     if (process->pid == 0)
     {
         close(process->File_descriptors[READ]); // Close read end at child
-        dup2(process->File_descriptors[WRITE],1); // Direct output at stdout
+        dup2(process->File_descriptors[WRITE],1); // Direct output from child end to stdout
         execv(process->args[0], process->args);
+
+        // Below line only executed when execv() gives error
         printf("Cannot start process : %s\n", process->args[0]);
         exit(-1);
     }
@@ -32,9 +36,9 @@ void start_pcb(PcbPtr process)
 
 PcbPtr Stop_Pcb(PcbPtr process)
 {
-    if (kill(process->pid, SIGSTOP))
+    if (kill(process->pid, SIGSTOP)) // Suspend process by sending SIGSTOP signal
         return NULL;
-    process->status = SUSPENDED;
+    process->status = SUSPENDED; // Change status from RUNNING to SUSPENDED
     return process;
 }
 int is_running(PcbPtr process)
@@ -42,17 +46,17 @@ int is_running(PcbPtr process)
     kill(process->pid, 0); // Check process is running or not
     if (errno == ESRCH || errno==EPERM)
     {
-        return 0;
+        return 0; // Process is not running
     }
-    return 1;
+    return 1; // Process is running
 }
 
 PcbPtr Resume_Pcb(PcbPtr process)
 {
 
-    if (kill(process->pid, SIGCONT))
+    if (kill(process->pid, SIGCONT)) // Continue or Resume suspended process by sending SIGCONT signal
         return NULL;
-    process->status = RUNNING;
+    process->status = RUNNING; // Change status from SUSPENDED to RUNNING
     return process;
 }
 
