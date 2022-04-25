@@ -3,3 +3,6 @@
 0.002 1 ../Processes/pr5.out
 0.003 1 ../Processes/pr4.out
 0.003 1 ../Processes/pr3.out
+0.004 1 ../Processes/pr6.out
+0.003 1 ../Processes/pr8.out
+0.004 1 ../Processes/pr7.out
