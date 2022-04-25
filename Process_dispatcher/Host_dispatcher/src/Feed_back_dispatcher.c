@@ -10,7 +10,7 @@
 #include "../include/Process_control_block.h" // header file
 
 /*-------------------- Priority Process Dispatcher -------------------------------
-------------------Source code for Fed back dispatcher  -----------------------------*/
+------------------Source code for Feed back dispatcher  -----------------------------*/
 
 sem_t thread_sem; // semaphore used to avoid jumbled output
 
