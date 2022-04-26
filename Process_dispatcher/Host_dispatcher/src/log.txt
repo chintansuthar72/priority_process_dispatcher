@@ -1,0 +1,142 @@
+
+0.012402 - started process : ../Processes/pr4.out
+
+0.022899 - process : ../Processes/pr4.out finished executing 
+	started at t=0.012402 , Finished at t= 0.022904s, executed time= 0.010342s--
+
+0.027072 - started process : ../Processes/pr3.out
+
+0.039722 - Process : ../Processes/pr3.out is paused
+
+0.042878 - started process : ../Processes/pr1.out
+
+0.055439 - Process : ../Processes/pr1.out is paused
+
+0.058301 - started process : ../Processes/pr7.out
+
+0.070758 - Process : ../Processes/pr7.out is paused
+
+0.072693 - started process : ../Processes/pr2.out
+
+0.085004 - Process : ../Processes/pr2.out is paused
+
+0.086965 - started process : ../Processes/pr8.out
+
+0.096774 - Process : ../Processes/pr8.out is paused
+
+0.098588 - started process : ../Processes/pr9.out
+
+0.107446 - Process : ../Processes/pr9.out is paused
+
+0.109422 - started process : ../Processes/pr5.out
+
+0.118951 - Process : ../Processes/pr5.out is paused
+
+0.120537 - started process : ../Processes/pr6.out
+
+0.129444 - Process : ../Processes/pr6.out is paused
+
+0.131367 - started process : ../Processes/pr10.out
+
+0.140245 - Process : ../Processes/pr10.out is paused
+
+-Process ../Processes/pr3.out is resumed
+
+0.140831 - Process : ../Processes/pr3.out is paused
+
+-Process ../Processes/pr1.out is resumed
+
+0.141448 - Process : ../Processes/pr1.out is paused
+
+-Process ../Processes/pr7.out is resumed
+
+0.141992 - Process : ../Processes/pr7.out is paused
+
+-Process ../Processes/pr2.out is resumed
+
+0.142598 - Process : ../Processes/pr2.out is paused
+
+-Process ../Processes/pr8.out is resumed
+
+0.142806 - Process : ../Processes/pr8.out is paused
+
+-Process ../Processes/pr9.out is resumed
+
+0.143081 - Process : ../Processes/pr9.out is paused
+
+-Process ../Processes/pr5.out is resumed
+
+0.143673 - Process : ../Processes/pr5.out is paused
+
+-Process ../Processes/pr6.out is resumed
+
+0.144266 - Process : ../Processes/pr6.out is paused
+
+-Process ../Processes/pr10.out is resumed
+
+0.144855 - Process : ../Processes/pr10.out is paused
+
+-Process ../Processes/pr3.out is resumed
+
+0.145583 - process : ../Processes/pr3.out finished executing 
+	started at t=0.027072 , Finished at t= 0.145612s, executed time= 0.001549s--
+
+-Process ../Processes/pr1.out is resumed
+
+0.146343 - Process : ../Processes/pr1.out is paused
+
+-Process ../Processes/pr7.out is resumed
+
+0.147315 - process : ../Processes/pr7.out finished executing 
+	started at t=0.058301 , Finished at t= 0.147318s, executed time= 0.001740s--
+
+-Process ../Processes/pr2.out is resumed
+
+0.148004 - Process : ../Processes/pr2.out is paused
+
+-Process ../Processes/pr8.out is resumed
+
+0.148763 - Process : ../Processes/pr8.out is paused
+
+-Process ../Processes/pr9.out is resumed
+
+0.149456 - Process : ../Processes/pr9.out is paused
+
+-Process ../Processes/pr5.out is resumed
+
+0.150164 - process : ../Processes/pr5.out finished executing 
+	started at t=0.109422 , Finished at t= 0.150166s, executed time= 0.001469s--
+
+-Process ../Processes/pr6.out is resumed
+
+0.151464 - process : ../Processes/pr6.out finished executing 
+	started at t=0.120537 , Finished at t= 0.151466s, executed time= 0.001554s--
+
+-Process ../Processes/pr10.out is resumed
+
+0.152735 - process : ../Processes/pr10.out finished executing 
+	started at t=0.131367 , Finished at t= 0.152738s, executed time= 0.001460s--
+
+-Process ../Processes/pr1.out is resumed
+
+0.153956 - process : ../Processes/pr1.out finished executing 
+	started at t=0.042878 , Finished at t= 0.153959s, executed time= 0.001618s--
+
+-Process ../Processes/pr2.out is resumed
+
+0.155222 - Process : ../Processes/pr2.out is paused
+
+-Process ../Processes/pr8.out is resumed
+
+0.156089 - process : ../Processes/pr8.out finished executing 
+	started at t=0.086965 , Finished at t= 0.156093s, executed time= 0.001899s--
+
+-Process ../Processes/pr9.out is resumed
+
+0.156800 - process : ../Processes/pr9.out finished executing 
+	started at t=0.098588 , Finished at t= 0.156803s, executed time= 0.001732s--
+
+-Process ../Processes/pr2.out is resumed
+
+5.148620 - process : ../Processes/pr2.out finished executing 
+	started at t=0.072693 , Finished at t= 5.148630s, executed time= 4.981563s--
